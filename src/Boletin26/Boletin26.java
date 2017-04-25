@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +22,7 @@ public class Boletin26 extends javax.swing.JFrame {
     private int contadorBotones = 0;
     private ArrayList<Integer> numerosJugados = new ArrayList();
     private ArrayList<Integer> numerosPremiados = new ArrayList();
-    private int aciertos=0;
+    private int aciertos = 0;
 
     /**
      * Creates new form Boletin26
@@ -43,14 +44,14 @@ public class Boletin26 extends javax.swing.JFrame {
                         if (contadorBotones < 6) {
                             contadorBotones++;
                             n.setEnabled(false);
-                            numerosJugados.add(Integer.parseInt(n.getText()));                            
+                            numerosJugados.add(Integer.parseInt(n.getText()));
                         } else {
-                            System.out.println("Solo puede seleccionar 6 numeros");
+                            jLabelMensajes.setText("Solo puede seleccionar 6 numeros");
                         }
                     } else {
                         contadorBotones--;
                         n.setEnabled(true);
-                        int indice=numerosJugados.indexOf(Integer.parseInt(n.getText()));
+                        int indice = numerosJugados.indexOf(Integer.parseInt(n.getText()));
                         numerosJugados.remove(indice);
                     }
                     System.out.println(contadorBotones);
@@ -74,14 +75,23 @@ public class Boletin26 extends javax.swing.JFrame {
 
         panelNumeros = new javax.swing.JPanel();
         panelResultados = new javax.swing.JPanel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30), new java.awt.Dimension(32767, 30));
         jButtonJugar = new javax.swing.JButton();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30), new java.awt.Dimension(32767, 30));
         jLabelRes = new javax.swing.JLabel();
         jLabelResultados = new javax.swing.JLabel();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30), new java.awt.Dimension(32767, 30));
         jLabelNum = new javax.swing.JLabel();
         jLabelMisNumeros = new javax.swing.JLabel();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30), new java.awt.Dimension(32767, 30));
         Aciertos = new javax.swing.JLabel();
+        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30), new java.awt.Dimension(32767, 30));
+        jLabelMensajes = new javax.swing.JLabel();
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 32767));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Boletin 26 --Loteria--");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(800, 600));
         setSize(new java.awt.Dimension(800, 600));
 
@@ -99,9 +109,13 @@ public class Boletin26 extends javax.swing.JFrame {
         getContentPane().add(panelNumeros, java.awt.BorderLayout.WEST);
 
         panelResultados.setLayout(new javax.swing.BoxLayout(panelResultados, javax.swing.BoxLayout.Y_AXIS));
+        panelResultados.add(filler1);
 
         jButtonJugar.setText("Jugar");
         jButtonJugar.setAlignmentX(0.5F);
+        jButtonJugar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonJugar.setMaximumSize(new java.awt.Dimension(100, 50));
+        jButtonJugar.setPreferredSize(new java.awt.Dimension(100, 50));
         jButtonJugar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonJugarMouseClicked(evt);
@@ -113,28 +127,42 @@ public class Boletin26 extends javax.swing.JFrame {
             }
         });
         panelResultados.add(jButtonJugar);
+        panelResultados.add(filler2);
 
+        jLabelRes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelRes.setText("Resultados");
         jLabelRes.setAlignmentX(0.5F);
+        jLabelRes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelResultados.add(jLabelRes);
 
         jLabelResultados.setText("N/A");
         jLabelResultados.setAlignmentX(0.5F);
+        jLabelResultados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelResultados.add(jLabelResultados);
+        panelResultados.add(filler3);
 
         jLabelNum.setText("Mis Numeros");
         jLabelNum.setAlignmentX(0.5F);
+        jLabelNum.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelResultados.add(jLabelNum);
 
         jLabelMisNumeros.setText("N/A");
         jLabelMisNumeros.setAlignmentX(0.5F);
+        jLabelMisNumeros.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelResultados.add(jLabelMisNumeros);
+        panelResultados.add(filler4);
 
         Aciertos.setText("N/A");
         Aciertos.setAlignmentX(0.5F);
+        Aciertos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelResultados.add(Aciertos);
+        panelResultados.add(filler6);
 
-        getContentPane().add(panelResultados, java.awt.BorderLayout.EAST);
+        jLabelMensajes.setAlignmentX(0.5F);
+        panelResultados.add(jLabelMensajes);
+
+        getContentPane().add(panelResultados, java.awt.BorderLayout.CENTER);
+        getContentPane().add(filler5, java.awt.BorderLayout.EAST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,22 +172,31 @@ public class Boletin26 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonJugarActionPerformed
 
     private void jButtonJugarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonJugarMouseClicked
-        if(numerosJugados.size()==6){
-        Random rnd = new Random();
-        for (int i = 0; i < 6; i++) {
-            numerosPremiados.add(rnd.nextInt(50));            
+        if (numerosJugados.size() == 6) {
+            numerosPremiados.removeAll(numerosPremiados);
+            aciertos=0;
+            jLabelMensajes.setText("");
+            Random rnd = new Random();
+            for (int i = 0; i < 6; i++) {
+                int num=rnd.nextInt(49)+1;
+                if(numerosPremiados.contains(num)==false){
+                numerosPremiados.add(num);
+                }else{
+                    i--;
+                }
+            }
+            numerosPremiados.sort(null);
+            jLabelMisNumeros.setText(numerosJugados.toString());
+            jLabelResultados.setText(numerosPremiados.toString());
+        } else {
+            JOptionPane.showMessageDialog(this, "Debes elegir 6 numeros antes de jugar");       
         }
-        numerosPremiados.sort(null);
-        System.out.println("Numeros Premiados: " + numerosPremiados.toString());
-        }else{
-            System.out.println("Debes elegir 6 numeros antes de jugar");
-        }
-        for(int n:numerosPremiados){
-            if(numerosJugados.contains(n)){
+        for (int n : numerosPremiados) {
+            if (numerosJugados.contains(n)) {
                 aciertos++;
-            }            
+            }
         }
-        System.out.println("Has acertado "+aciertos+" numeros.");
+        Aciertos.setText("Has acertado " + aciertos + " numeros");
     }//GEN-LAST:event_jButtonJugarMouseClicked
 
     /**
@@ -199,7 +236,14 @@ public class Boletin26 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Aciertos;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.Box.Filler filler6;
     private javax.swing.JButton jButtonJugar;
+    private javax.swing.JLabel jLabelMensajes;
     private javax.swing.JLabel jLabelMisNumeros;
     private javax.swing.JLabel jLabelNum;
     private javax.swing.JLabel jLabelRes;
